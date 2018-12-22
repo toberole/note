@@ -11,7 +11,7 @@
 
     docker pull xxxx
 
-- 启动容器
+- 创建并启动容器
 <pre>
 docker run -it --name "容器的名字" "镜像的名字" "初始命令" 
 
