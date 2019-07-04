@@ -13,7 +13,7 @@
 
 - 创建并启动容器
 <pre>
-docker run -it --name "容器的名字" "镜像的名字" "初始命令" 
+docker run -it --name "给容器的名字" "下载下来的镜像的名字" "初始命令" 
 
 -i：表示以“交互模式”运行容器
 
@@ -23,7 +23,10 @@ docker run -it --name "容器的名字" "镜像的名字" "初始命令"
 
 -d：表示以“守护模式”
 
--p：表示宿主机与容器的端口映射
+-p：表示宿主机与容器的端口映射,-p 8080:80[宿主机的8080与容器的80端口做一个映射 ]
+
+eg:
+    docker run -it --name xxx yyy -p 8080:80 ubutun
 </pre>
 
 - 查看正在运行的容器
@@ -79,7 +82,10 @@ docker exec -it mynginx /bin/sh /root/runoob.sh
 - 查看正在运行的容器的IP
 
     docker inspect --format='{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "容器"
-    
+
+- 将容器保存为一个新的镜像
+docker commit 23c18d958279 xxx:v0.2
+
 
 # win7下面docker安装的默认的linux
 https://github.com/boot2docker/boot2docker
