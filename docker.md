@@ -11,9 +11,9 @@
 
     docker pull xxxx
 
-- 创建并启动容器
+- 创建并启动进入容器
 <pre>
-docker run -it --name "给容器的名字" "下载下来的镜像的名字" "初始命令" 
+docker run -it --name "给容器的名字" "下载下来的镜像的名字" ["初始命令",进入容器之后 在容器中执行的命令]
 
 -i：表示以“交互模式”运行容器
 
@@ -75,6 +75,9 @@ docker exec -it mynginx /bin/sh /root/runoob.sh
 
     docker stop “容器”
 
+- 退出不停止容器
+    ctrl+p+q
+
 - 查看容器的原信息
 
     docker inspect "容器"
@@ -84,7 +87,7 @@ docker exec -it mynginx /bin/sh /root/runoob.sh
     docker inspect --format='{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "容器"
 
 - 将容器保存为一个新的镜像
-docker commit 23c18d958279 xxx:v0.2
+docker commit "23c18d958279希望保存为新镜像的容器id" xxx:v0.2
 
 
 # win7下面docker安装的默认的linux
@@ -103,3 +106,8 @@ docker是Linux虚拟容器技术，用它必须是在Linux上，windows之所以
 在做文件共享的时候需要注意：
 win7 共享------> linux虚拟机 ------> 容器
 </pre>
+
+- SSH登陆
+ssh dev@10.134.14.136
+- SCP 传递文件到服务器
+scp form_localpath user@servername:to_server_pathls
