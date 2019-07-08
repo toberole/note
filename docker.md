@@ -49,6 +49,15 @@ eg:
 
     docker rmi "镜像ID"
 
+- 保存镜像
+    docker save -o "被保存的镜像ID" “保存的镜像名字”
+    eg：docker save -o xxxx abc.tar
+        docker save xxxx > abc.tar
+
+- 加载镜像文件
+    docker load -i abc.tar
+    docker load < abc.tar
+
 - 在运行的容器中执行命令
 <pre>
 docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
