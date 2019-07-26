@@ -22,7 +22,7 @@ Serializable 序列化时候 static和transient成员不会被序列化
 
 AIDL实现的IPC是阻塞式的.    
 
-AIDL文件就是通信双方的协议接口文件，IDE会自动更具AIDL文件生成通信的客户端java文件，服务端具体业务可以通过实现 IXXX.Stub。
+AIDL文件就是通信双方的协议接口文件，IDE会自动更具AIDL文件生成通信的客户端java文件，服务端具体业务可以通过实现 IXXX.Stub。客户端在获取到服务端的Binder后，需要利用IXXX.Stub.asInterface 转换为对应接口的实现。如果被调用的服务Binder与调用在同一个进程中，那么返回的就是LocalInterface，否则返回的是服务端BInder的Proxy。
 
 ContentProvider
     当调用ContentProvider与调用者在一个进程中的时，那么ContentProvider被调用的方法则与其调用者跑在同一条线程中。
