@@ -18,10 +18,11 @@ android:process="com.xxx.org.remote"
     此中方式配置的进程是全局的进程，其他引用可以通过shareUID方式和其跑在同一个进程中。
     两个应用通过shareUID跑在同一个进程中需要这两个应用有相同的shareUID并且具有相同的签名
 
-
 Serializable 序列化时候 static和transient成员不会被序列化
 
 AIDL实现的IPC是阻塞式的.    
+
+AIDL文件就是通信双方的协议接口文件，IDE会自动更具AIDL文件生成通信的客户端java文件，服务端具体业务可以通过实现 IXXX.Stub。
 
 ContentProvider
     当调用ContentProvider与调用者在一个进程中的时，那么ContentProvider被调用的方法则与其调用者跑在同一条线程中。
@@ -29,6 +30,8 @@ ContentProvider
     ContentProvider 不仅支持传统的CRUD方法调用，还支持自定义call方法调用。
 
 同一个SQLiteDatabase内部对数据库的操作是同步处理的。
+
+
 
 
 
