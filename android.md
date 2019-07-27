@@ -31,6 +31,11 @@ ContentProvider
 
 同一个SQLiteDatabase内部对数据库的操作是同步处理的。
 
+View处理相关的工具类
+Velocity 计算速度的工具类
+GestureDetector 手势处理类
+Scroller 滚动处理类
+
 
 
 
