@@ -36,6 +36,32 @@ Velocity 计算速度的工具类
 GestureDetector 手势处理类
 Scroller 滚动处理类
 
+View平移：
+1、scrollTo、scrollBy，只能改变view的内容的位置，不能改变View的位置。
+    mScrollX：
+        从左往右滑动为负值，从右往左为正值。
+    mScrollY：
+        从右往左滑动为负值，从左往右为正值。
+2、动画
+3、改变LayoutParams
+
+dispatchTouchEvent、onInterceptTouchEvent都是有父View触发调用。在重写这些方法时，注意需要调用super的该方法，否则处理逻辑就混乱了[不符合系统事件处理规范]。
+
+dispatchTouchEvent -> onInterceptTouchEvent -> OnTouchListener[onTouch false] -> onTouchEvent -> OnClickListener
+
+android底层都是基于事件驱动的。
+Touch事件传递：
+    底层驱动接收到事件，会封装成消息，post到main handler messagequeue里面，...,最后到Activity，再派发到Activity里面的View。在Activity#dispatchTouchEvent调用Thread.dumpStack()打印调用栈，可以查看具体的调用顺序。
+
+
+
+
+
+
+
+
+
+
 
 
 
