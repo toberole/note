@@ -47,7 +47,9 @@ View平移：
 
 dispatchTouchEvent、onInterceptTouchEvent都是有父View触发调用。在重写这些方法时，注意需要调用super的该方法，否则处理逻辑就混乱了[不符合系统事件处理规范]。
 
-dispatchTouchEvent -> onInterceptTouchEvent -> OnTouchListener[onTouch false] -> onTouchEvent -> OnClickListener
+... Activity#dispatchTouchEvent -> dispatchTouchEvent -> onInterceptTouchEvent -> OnTouchListener[onTouch false] -> onTouchEvent -> OnClickListener
+onInterceptTouchEvent、OnTouchListener是在dispatchTouchEvent里面调用的。
+OnClickListener是在onTouchEvent里面调用的。
 
 android底层都是基于事件驱动的。
 Touch事件传递：
