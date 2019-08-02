@@ -31,11 +31,11 @@ AddType application/x-httpd-php .php .html .htm
 
 删除服务：sc delete "apache"
 
-4、测试启动。
+4、启动服务
+net start apache
 
-以管理员方式启动DOS窗口，输入命令：net start apache
-
-关闭服务：net stop apache
+5、关闭服务
+net stop apache
 
 Apache 配置虚拟目录和虚拟主机
 # Create Virtual catalogue
