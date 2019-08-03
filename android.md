@@ -45,6 +45,10 @@ View平移：
 2、动画
 3、改变LayoutParams
 
+事件分发：
+    点击事件首先有屏幕驱动经过层层处理最终传递到Activity,Activity通过dispatchTouchEvent派发到用户设置的界面布局ViewGroup。
+    首先调用用户界面顶级ViewGroup#dispatchTouchEvent，在dispatchTouchEvent方法中会调用onInterceptTouchEvent判断是否拦截事件，拦截返回true，否则返回false。如果拦截那么会调用ViewGroup的OnTouchListener#onTouch，如果onTouch不消费此事件，那么会进一步调用onTouchEvent，在onTouchEvent中会调用OnClickListener。
+
 dispatchTouchEvent、onInterceptTouchEvent都是有父View触发调用。在重写这些方法时，注意需要调用super的该方法，否则处理逻辑就混乱了[不符合系统事件处理规范]。
 
 ... Activity#dispatchTouchEvent -> dispatchTouchEvent -> onInterceptTouchEvent -> OnTouchListener[onTouch false] -> onTouchEvent -> OnClickListener
