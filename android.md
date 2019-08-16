@@ -59,8 +59,7 @@ android底层都是基于事件驱动的。
 Touch事件传递：
     底层驱动接收到事件，会封装成消息，post到main handler messagequeue里面，...,最后到Activity，再派发到Activity里面的View。在Activity#dispatchTouchEvent调用Thread.dumpStack()打印调用栈，可以查看具体的调用顺序。
 
-
-
+APP启动时，会使用mmap映射一块内存到binder驱动[具体大小在ProcessState.cpp中定义的，在ProcessState做的映射操作]
 
 
 

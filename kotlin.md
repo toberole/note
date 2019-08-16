@@ -11,3 +11,5 @@ lateinit和 by lazy
     by lazy { } 只能用在val
 
 companion代码块中的方法和属性都是静态的
+
+
