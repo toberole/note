@@ -61,8 +61,7 @@ Touch事件传递：
 
 APP启动时，会使用mmap映射一块内存到binder驱动[具体大小在ProcessState.cpp中定义的，在ProcessState做的映射操作]
 
-
-
+引入第三方so库，打包时必须放在jniLibs目录下面
 
 
 
