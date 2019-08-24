@@ -1,3 +1,5 @@
+FFmpeg学习可以参看源码下面的doc/examples
+
 FFMEPG库：
 1）avcodec：编解码（最重要的库）
 2）avformat：封装格式处理
@@ -139,16 +141,33 @@ H264 的相关概念有：序列、图像、片组、片、NALU、宏块、亚�
 
 IPB帧、IDR帧：
     根据帧间预测算法，对应的帧类型有 I 帧（intra picture）、P 帧（predictive-frame）、B 帧（bi-directional interpolated prediction frame）。I 帧是关键帧，使用帧内预测，无需借助其它帧的信息即可完整地呈现出一幅图像；P 帧没有完整的图像数据，只保存与前面的帧的差别，需要借助之前的帧数据生成图像；B 帧记录的是与前后帧的差别。
-    
+
     此外还有一个概念为 IDR 帧（instantaneous decoding refresh picture），因为 I 帧后的 P 帧可能会参考 I 帧之前的帧，这使得在随机访问的时候，可能即使找到了 I 帧，后面的 P 帧也无法解码。因此，IDR 会清空参考帧列表（DPB），IDR 帧之后的帧都不能引用任何 IDR 帧之前的帧数据。
 
+片、NAL、宏块:
+H.264 的主要目标有两个：高视频压缩比、良好的网络亲和性。为此， H.264 的功能分为两层，即视频编码层（VCL）和网络提取层（NAL， Network Abstraction Layer）。 VCL 数据即编码处理的输出，它表示被压缩编码后的视频数据序列。在 VCL 数据传输或存储之前，这些编码的 VCL 数据，会被映射或封装进 NAL Unit 中。每个 NAL Unit 包括一个原始字节序列负荷（RBSP）、一组对应于视频编码数据的 NAL 头信息[NAL:RBSP,NAL:RBSP,NAL:RBSP...]。
 
+NAL Unit 的头占一个字节，由三部份組成，包括 forbidden_bit、nal_reference_idc 和 nal_unit_type。其中 forbidden_bit 占 1 bit，一般来说其值为 0；nal_reference_idc 占 2 bit，用于表示此 NAL 在重建过程中的重要程度。剩下 5 bit 表示 nal_unit_type，用于表示该 NAL Unit （RBSP）的类型。
 
+H264 vs x264
+    H264 是一个标准，一种格式，定义了视频流应该如何被压缩编码
+    x264 是一个开源的编码器，用于产生 H264 格式的视频流
+h264 vs avc
+    属于 MP4 封装的 H264 视频的两种格式，都属于“H264”，只有一个区别：
+    h264：带起始码 0x00 00 01 或 0x00 00 00 01
+    avc：不带起始码
 
+常用软件
+MediaInfo：
+    用于查看视频参数
+ffmpeg三个命令行工具：
+    ffplay：用于播放音视频，包括 yuv、pcm 等裸数据
+    ffprobe：用于查看媒体文件头信息
+    ffmpeg：强大的媒体文件转换工具，还可以转换图片格式
+    YUVPlayer：播放 yuv 裸数据
+    VLC：多媒体播放器
 
-
-
-
+YUV转换为RGB使用OpenGL效率会比较高
 
 
 
