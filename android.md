@@ -60,6 +60,14 @@ Touch事件传递：
     底层驱动接收到事件，会封装成消息，post到main handler messagequeue里面，...,最后到Activity，再派发到Activity里面的View。在Activity#dispatchTouchEvent调用Thread.dumpStack()打印调用栈，可以查看具体的调用顺序。
 
 
+handler#sendMessage 到MessageQueue是加锁MessageQueue.this，msg加入到messagequeue之后会唤醒
+阻塞的Looper.loop方法，是通过底层的epool实现的，当loop方法被唤醒之后，才去争取MessageQueue.this,
+然后进行信息的派发处理，这样做就避免了put message和get message频繁的争取MessageQueue.this。
+
+binder大小限制:
+    binder.c->binder_open 底层驱动128k
+    ProcessState.cpp 进程限制大小 < 1M
+    APP进程缓存会通过mmap映射到底层的驱动的混存
 
 
 
