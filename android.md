@@ -59,6 +59,7 @@ android底层都是基于事件驱动的。
 Touch事件传递：
     底层驱动接收到事件，会封装成消息，post到main handler messagequeue里面，...,最后到Activity，再派发到Activity里面的View。在Activity#dispatchTouchEvent调用Thread.dumpStack()打印调用栈，可以查看具体的调用顺序。
 
+APP启动时，会使用mmap映射一块内存到binder驱动[具体大小在ProcessState.cpp中定义的，在ProcessState做的映射操作]
 
 handler#sendMessage 到MessageQueue是加锁MessageQueue.this，msg加入到messagequeue之后会唤醒
 阻塞的Looper.loop方法，是通过底层的epool实现的，当loop方法被唤醒之后，才去争取MessageQueue.this,
@@ -69,9 +70,7 @@ binder大小限制:
     ProcessState.cpp 进程限制大小 < 1M
     APP进程缓存会通过mmap映射到底层的驱动的混存
 
-
-
-
+引入第三方so库，打包时必须放在jniLibs目录下面
 
 
 
