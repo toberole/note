@@ -72,6 +72,8 @@ binder大小限制:
 
 引入第三方so库，打包时必须放在jniLibs目录下面
 
+LayoutAnimation作用于ViewGroup，使得ViewGroup的子View具有LayoutAnimation动画效果。
+
 
 
 

@@ -103,7 +103,6 @@ docker commit "23c18d958279希望保存为新镜像的容器id" xxx:v0.2
 https://github.com/boot2docker/boot2docker
 
 user:docker
-
 pwd:tcuser
 
 
