@@ -105,7 +105,6 @@ https://github.com/boot2docker/boot2docker
 user:docker
 pwd:tcuser
 
-
 <pre>
 docker是Linux虚拟容器技术，用它必须是在Linux上，windows之所以能用 是使用了虚拟机。
 在windows7上使用docker：
