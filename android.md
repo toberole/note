@@ -78,7 +78,8 @@ android UI的绘制刷新都是在ViewRootImpl类中进行的，在ViewRootImpl�
 在ViewRootImpl的构造方法中会记录当前的线程[Thread.currentThread],所以只要更新UI的操作与创建ViewRootImpl在同一条线程，那么就可以更新UI操作，当时ViewRootImpl不能够有用户之间创建，但是可以通过WindowManager.addView来间接的实现，因此可以通过WindowManager.addView来间接的更新UI。
 
 
-
+ActivityManagerService 通过Process.java组件交互生启动APP，
+Process.java通过socket与ZygoteInit.java通信，由ZygoteInit最终实现生成新的进程。
 
 
 
