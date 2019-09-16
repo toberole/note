@@ -81,6 +81,7 @@ android UI的绘制刷新都是在ViewRootImpl类中进行的，在ViewRootImpl�
 ActivityManagerService 通过Process.java组件交互生启动APP，
 Process.java通过socket与ZygoteInit.java通信，由ZygoteInit最终实现生成新的进程。
 
+android java层两大核心进程：SystemServer、Zygote。其中任何一个进程崩溃都会导致java层崩溃，崩溃后会由Linux的init进程重新启动这两个进程。
 
 
 
