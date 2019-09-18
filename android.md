@@ -83,7 +83,9 @@ Process.java通过socket与ZygoteInit.java通信，由ZygoteInit最终实现生�
 
 android java层两大核心进程：SystemServer、Zygote。其中任何一个进程崩溃都会导致java层崩溃，崩溃后会由Linux的init进程重新启动这两个进程。
 
-
+调用dlopen函数，打开一个so文件并创建一个handle；
+调用dlsym()函数，查看相应so文件的JNI_OnLoad()函数指针，并执行相应函数。
+dlopen、dlsym提供一种动态装载库到内存的机制，可以调用库中的方法。
 
 
 
