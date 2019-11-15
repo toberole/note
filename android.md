@@ -68,7 +68,7 @@ handler#sendMessage 到MessageQueue是加锁MessageQueue.this，msg加入到mess
 binder大小限制:
     binder.c->binder_open 底层驱动128k
     ProcessState.cpp 进程限制大小 < 1M
-    APP进程缓存会通过mmap映射到底层的驱动的混存
+    APP进程缓存会通过mmap映射到底层的驱动的缓存
 
 引入第三方so库，打包时必须放在jniLibs目录下面
 
