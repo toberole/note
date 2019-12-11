@@ -143,13 +143,19 @@ GCD 提供了同步执行任务的创建方法dispatch_sync和异步执行任务
 5、同步执行 + 主队列
 6、异步执行 + 主队列
 
-////////////////////////////////////////////////////
 ios4之前系统不支持多线程
 
 IOS程序中显示的都是UIView[或者是起子类]，View的显示以及操作都是由UIViewController控制的。UIViewController之间的切换一般情况下都是由UINavigationController、UITabBarController、UISplitViewController控制的。
 
 UIResponder代表一个可以接收屏幕触摸事件对象。
 
+关联返回类型:
+根据Cocoa的命名规则，满足下述规则的方法：
+（1）类方法中，以alloc或new开头
+（2）实例方法中，以autorelease，init，retain或self开头
+会返回一个方法所在类类型的对象，这些方法就被称为是关联返回类型的方法。换句话说，这些方法的返回结果以方法所在的类为类型。
+
+instancetype的作用，就是使那些非关联返回类型的方法返回所在类的类型！
 
 
 
