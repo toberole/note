@@ -32,10 +32,13 @@ description类toString方法
     @property age 编译器会自动生成setAge和getAge
 @property 用于声明
 
-使用@synthesize，编译器会在类中自动生成一个变量 用在实现文件中
+使用@synthesize，编译器会在类中自动生成一个成员变量 用在实现文件中
 eg:
-    @synthesize xxx 代表访问成员变量xxx
-    @synthesize xxx=yyy 当访问xxx的时候访问的是yyy
+    @synthesize xxx 生成成员变量xxx
+    @synthesize xxx=yyy 属性xxx与成员变量yyy关联 ，操作属性xxx相当于操作yyy
+
+只使用property声明变量x，编译会生成一个成员变量_x
+同时使用property和synthesize会生成x
 
 @dynamic 编译器不要自动生成 
 
@@ -157,10 +160,10 @@ UIResponder代表一个可以接收屏幕触摸事件对象。
 
 instancetype的作用，就是使那些非关联返回类型的方法返回所在类的类型！
 
-
-
-
-
+__strong修饰符是id类型和对象类型默认的所有权修饰符。
+ __strong修饰符表示对对象的强引用，持有强引用的变量在出其作用域时被废弃，随着强引用的失效，引用的对象随之释放。
+ __weak 解决循环引用，带有__weak修饰符的变量不持有对象，所以在超出其变量作用域时，对象即被释放。
+在block中调用self会引起循环引用，但是在block中需要对weakSelf进行strong,保证代码在执行到block中，self不会被释放，当block执行完后，会自动释放该strongSelf。
 
 
 
