@@ -1,14 +1,15 @@
-定义变量：
+﻿定义变量：
 var：可变变量
 val：只读变量
 var有setter和getter,val只有getter
 
-"?" 表示可为空
-"!!" 表示不能为空
-
 lateinit和 by lazy
     lateinit 只能用在var类型，lateinit不能用在可空的属性上和java的基本类型上
     by lazy { } 只能用在val
+
+"?" 表示可为空
+"!!" 表示不能为空
+"?." 称为安全调用，比如a ?. b 当a不为空的时候 才调用b
 
 companion代码块中的方法和属性都是静态的
 
@@ -23,4 +24,6 @@ companion代码块中的方法和属性都是静态的
 在需要表达式的地方运行语句：非扩展的 run
 附加效果：also
 一个对象的一组函数调用：with
+
+
 
