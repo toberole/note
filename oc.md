@@ -25,7 +25,7 @@ description类toString方法
 
 从Xcode4.4以后@property已经独揽了@synthesize的功能主要有三个作用：
  (1)生成了成员变量get/set方法的声明
- (2)生成了私有的带下划线的的成员变量因此子类不可以直接访问，但是可以通过get/set方法访问。那么如果想让定义的成员变量让子类直接访问那么只能在.h文件中定义成员　　　　变量了，因为它默认是@protected
+ (2)生成了私有的带下划线的的成员变量因此子类不可以直接访问，但是可以通过get/set方法访问。那么如果想让定义的成员变量让子类直接访问那么只能在.h文件中定义成员变量了，因为它默认是@protected
  (3)生成了get/set方法的实现
 @property、@synthesize: 
 @property编译器会自动实现 用在头文件中 setter和getter
