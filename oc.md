@@ -150,6 +150,9 @@ IOS程序中显示的都是UIView[或者是起子类]，View的显示以及操�
 
 UIResponder代表一个可以接收屏幕触摸事件对象。
 
+UIView
+UIView.fream 
+
 
 
 
