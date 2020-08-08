@@ -25,17 +25,20 @@ description类toString方法
 
 从Xcode4.4以后@property已经独揽了@synthesize的功能主要有三个作用：
  (1)生成了成员变量get/set方法的声明
- (2)生成了私有的带下划线的的成员变量因此子类不可以直接访问，但是可以通过get/set方法访问。那么如果想让定义的成员变量让子类直接访问那么只能在.h文件中定义成员　　　　变量了，因为它默认是@protected
+ (2)生成了私有的带下划线的的成员变量因此子类不可以直接访问，但是可以通过get/set方法访问。那么如果想让定义的成员变量让子类直接访问那么只能在.h文件中定义成员变量了，因为它默认是@protected
  (3)生成了get/set方法的实现
 @property、@synthesize: 
 @property编译器会自动实现 用在头文件中 setter和getter
     @property age 编译器会自动生成setAge和getAge
 @property 用于声明
 
-使用@synthesize，编译器会在类中自动生成一个变量 用在实现文件中
+使用@synthesize，编译器会在类中自动生成一个成员变量 用在实现文件中
 eg:
-    @synthesize xxx 代表访问成员变量xxx
-    @synthesize xxx=yyy 当访问xxx的时候访问的是yyy
+    @synthesize xxx 生成成员变量xxx
+    @synthesize xxx=yyy 属性xxx与成员变量yyy关联 ，操作属性xxx相当于操作yyy
+
+只使用property声明变量x，编译会生成一个成员变量_x
+同时使用property和synthesize会生成x
 
 @dynamic 编译器不要自动生成 
 
@@ -47,7 +50,7 @@ assign：
 strong: 
     使用该特性实例变量在赋值时，会释放旧值同时设置新值，对对象产生一个强引用，用MRC来说就是引用计数+1。
 weak: 
-    属性表明了一种”非拥有关系“，既不释放旧值，也不保留新值。用MRC就是引用计数不变，当指向的对象被释放时，该属性自动被设置为nil。这里多说一点，weak的runtime实现是通过hash表完成的，用变量名做键，一旦发现属性所指的对象被释放了，立刻设置为nil。
+    属性表明了一种”非拥有关系“，既不释放旧值，也不保留新值。用MRC就是引用计数不变，当指向的对象被释放时，该属性自动被设置为nil。weak的runtime实现是通过hash表完成的，用变量名做键，一旦发现属性所指的对象被释放了，立刻设置为nil。
 unsafe_unretained：
     和weak一样，唯一的区别就是当对象被释放后，该属性不会被设置为nil。
 copy：
@@ -57,14 +60,14 @@ dealloc 对象释放的时候会自动的调用该方法
 
 #pragma mark 注释
 
-
+typeof(xxx) 注意不同于C语言，OC中是指返回xxx的类型
 
 
 类别与扩展[匿名类别]
 类别：
 ①为现有的类添加新方法；
 ②将类的实现分散到多个不同文件或多个不同框架中(把一个大的类按功能划分成几块,便于维护)
-③通过替换现有类中的方法，修正现有类(没有源码文件的情况下)的功能或错误
+③通过替换现有类中的方法，修正现有类(没有源码文件的情况下)的功能
 扩展：
 可以在类扩展中声明属性和实例变量。
 类扩展声明必须在 @implementation在实现。
@@ -143,21 +146,30 @@ GCD 提供了同步执行任务的创建方法dispatch_sync和异步执行任务
 5、同步执行 + 主队列
 6、异步执行 + 主队列
 
-////////////////////////////////////////////////////
 ios4之前系统不支持多线程
 
 IOS程序中显示的都是UIView[或者是起子类]，View的显示以及操作都是由UIViewController控制的。UIViewController之间的切换一般情况下都是由UINavigationController、UITabBarController、UISplitViewController控制的。
 
 UIResponder代表一个可以接收屏幕触摸事件对象。
 
+<<<<<<< HEAD
 UIView
 UIView.fream 
 
+=======
+关联返回类型:
+根据Cocoa的命名规则，满足下述规则的方法：
+（1）类方法中，以alloc或new开头
+（2）实例方法中，以autorelease，init，retain或self开头
+会返回一个方法所在类类型的对象，这些方法就被称为是关联返回类型的方法。换句话说，这些方法的返回结果以方法所在的类为类型。
+>>>>>>> f468b2d1e730199f18d46e788f1c7616435441cb
 
+instancetype的作用，就是使那些非关联返回类型的方法返回所在类的类型！
 
-
-
-
+__strong修饰符是id类型和对象类型默认的所有权修饰符。
+ __strong修饰符表示对对象的强引用，持有强引用的变量在出其作用域时被废弃，随着强引用的失效，引用的对象随之释放。
+ __weak 解决循环引用，带有__weak修饰符的变量不持有对象，所以在超出其变量作用域时，对象即被释放。
+在block中调用self会引起循环引用，但是在block中需要对weakSelf进行strong,保证代码在执行到block中，self不会被释放，当block执行完后，会自动释放该strongSelf。
 
 
 
