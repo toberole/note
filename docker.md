@@ -11,6 +11,22 @@
 
     docker pull xxxx
 
+- 移除镜像
+
+    docker rmi "镜像ID"
+
+- 保存镜像
+    docker save -o "被保存的镜像ID" “保存的镜像名字”
+    eg：docker save -o xxxx abc.tar
+        docker save xxxx > abc.tar
+
+- 加载镜像文件
+    docker load -i abc.tar
+    docker load < abc.tar
+
+- 创建容器
+    docker create --name "给容器的名字" "下载下来的镜像的名字"
+
 - 创建并启动进入容器
 <pre>
 docker run -it --name "给容器的名字" "下载下来的镜像的名字" ["初始命令",进入容器之后 在容器中执行的命令]
@@ -44,19 +60,6 @@ eg:
 - 移除容器
 
     docker rm [-f] "容器ID"
-
-- 移除镜像
-
-    docker rmi "镜像ID"
-
-- 保存镜像
-    docker save -o "被保存的镜像ID" “保存的镜像名字”
-    eg：docker save -o xxxx abc.tar
-        docker save xxxx > abc.tar
-
-- 加载镜像文件
-    docker load -i abc.tar
-    docker load < abc.tar
 
 - 在运行的容器中执行命令
 <pre>
@@ -97,7 +100,6 @@ docker exec -it mynginx /bin/sh /root/runoob.sh
 
 - 将容器保存为一个新的镜像
 docker commit "23c18d958279希望保存为新镜像的容器id" xxx:v0.2
-
 
 # win7下面docker安装的默认的linux
 https://github.com/boot2docker/boot2docker
